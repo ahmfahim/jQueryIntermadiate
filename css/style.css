@@ -1,0 +1,17 @@
+#box{
+    width: 200px;
+    height: 200px;
+    background: orange;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 100px;
+}
+.thing{
+    width: 200px;
+    height: 200px;
+    background: palegreen;
+    border-left: 4px solid red;
+    border-top-left-radius: 200px;
+    text-align: right;
+
+}

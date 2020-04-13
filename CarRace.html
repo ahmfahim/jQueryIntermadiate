@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Racing Car</title>
+    <!-- ------------------------------------------
+       In this game which I made to saw a tutorial.
+            when I am a learner of JavaScript.
+    ----------------------------------------------->
+    <!-- car.css -->
+    <link rel="stylesheet" href="car.css">
+</head>
+<body>
+
+    <div id="race" align="center"> <!--Main body-->
+
+        <h1>Car Racer 2.0</h1> <!--game title-->
+
+        <input type="button" value="Race" id="go"> <!--start button-->
+        <input type="button" value="Reset" id="reset"> <!--finished button-->
+
+        <div id="racetrack"> <!--car image-->
+            <img src="img/car1.png" alt="green car" id="car1" class="car">
+            <img src="img/car2.png" alt="red car" id="car2" class="car">
+        </div>
+
+        <div id="raceInfoContainer" class="clearfix"> <!--Race result-->
+            <h2>Result</h2>
+            <div id="raceInfo1" class="raceInfo">Green Car <span></span></div>
+            <div id="raceInfo2" class="raceInfo">Red Car <span></span></div>
+        </div>
+
+
+
+    </div><!--div #race-->
+
+
+    
+    <!-------------
+        JAVASCRIPT
+     -------------->
+    <script src="js/jquery.js"></script>
+
+    <!------------
+      Script.js
+    -------------->
+    <script type="text/javascript">
+    
+        $(function(){
+            $('#go').click(function(){
+
+                // build a function that check to see if a car has won the race
+                function checkIfComplete(){
+
+                    if ( isComplete == false){
+                         isComplete = true;
+                    }else{
+                        place = "second";
+                    }
+                }
+                
+                // get the width of the cars
+                var carWidth = $("#car1").width();
+
+                // get the width of the racetrack
+                var raceTrackWidth = $(window).width() - carWidth;
+
+                //generate a random # between 1 and 5000
+                var raceTime1 = Math.floor( (Math.random() * 5000) + 1 );
+                var raceTime2 = Math.floor( (Math.random() * 5000) + 1 );
+
+                // set a flag variable to First by defult
+                var isComplete = false;
+
+                // set a flag variable to First by defult
+                var isComplete = "first";
+
+                // animate car 1
+                $("#car1").animate({
+
+                    // move the car width of the racetrck
+                    left: raceTrackWidth
+
+                }, raceTime1, function(){
+                    
+                    // animation is complete
+
+                    // run a function
+                    checkIfComplete();
+
+                    // give some text feedback in the race info box
+                    $("#raceInfo1 span").text("Finished in " + place + " place and clocked in at" + raceTime1 + "milliseconds !");
+                });
+
+                // animate car 2
+                $("#car2").animate({
+
+                    // move the car width of the racetrck
+                    left: raceTrackWidth
+
+                    }, raceTime2,function(){
+
+                    // animation is complete
+
+                    // run a function
+                    checkIfComplete();
+
+                    // give some text feedback in the race info box
+                    $("#raceInfo2 span").text("Finished in " + place + " place and clocked in at" + raceTime2 + "milliseconds !");
+                    });
+
+                
+
+            });
+
+            // reset the race
+            $("#reset").click(function(){
+                $(".car").css("left","0");
+                $(".raceInfo span").text("");
+            });
+        });
+      
+    
+    </script>
+
+</body>
+</html>
